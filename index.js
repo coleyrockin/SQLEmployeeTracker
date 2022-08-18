@@ -2,34 +2,20 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 require('console.table');
+require('dotenv').config()
 
 //mysql connection
 const connection = mysql.createConnection({
     host: 'localhost',
-
-    // Your port; if not 3306
-    port: 3306,
-
-    // Your username
-    user: 'root',
-
+    user: process.env.DB_USER,
     // Your password
-    password: '--',
-    database: 'employeesDB'
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 });
 
 connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
-    console.log(`
-    ╔═══╗─────╔╗──────────────╔═╗╔═╗
-    ║╔══╝─────║║──────────────║║╚╝║║
-    ║╚══╦╗╔╦══╣║╔══╦╗─╔╦══╦══╗║╔╗╔╗╠══╦═╗╔══╦══╦══╦═╗
-    ║╔══╣╚╝║╔╗║║║╔╗║║─║║║═╣║═╣║║║║║║╔╗║╔╗╣╔╗║╔╗║║═╣╔╝
-    ║╚══╣║║║╚╝║╚╣╚╝║╚═╝║║═╣║═╣║║║║║║╔╗║║║║╔╗║╚╝║║═╣║
-    ╚═══╩╩╩╣╔═╩═╩══╩═╗╔╩══╩══╝╚╝╚╝╚╩╝╚╩╝╚╩╝╚╩═╗╠══╩╝
-    ───────║║──────╔═╝║─────────────────────╔═╝║
-    ───────╚╝──────╚══╝─────────────────────╚══╝`)
     // runs the app
     firstPrompt();
 });
@@ -82,4 +68,25 @@ function firstPrompt() {
           break;
       }
     });
+}
+
+function viewEmployee() {
+  console.log("Viewing employees\n");
+
+  var query =
+    `SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager
+  FROM employee e
+  LEFT JOIN role r
+	ON e.role_id = r.id
+  LEFT JOIN department d
+  ON d.id = r.department_id
+  LEFT JOIN employee m
+	ON m.id = e.manager_id`
+
+  connection.query(query, function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    console.log("Employees viewed!\n");
+    firstPrompt();
+  });
 }
