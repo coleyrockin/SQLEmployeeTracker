@@ -2,6 +2,7 @@ USE employeesDB;
 
 INSERT INTO department (name)
 VALUES
+("CEO"),
 ("Sales"),
 ("Engineering"),
 ("Finance"),
