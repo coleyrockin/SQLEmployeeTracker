@@ -1,6 +1,6 @@
 USE employeesDB;
 
-INSERT INTO department (name)
+INSERT INTO departments (name)
 VALUES
 ("CEO"),
 ("Sales"),
@@ -9,17 +9,17 @@ VALUES
 ("Marketing"),
 ("Legal");
 
-INSERT INTO role (title, salary, department_id)
+INSERT INTO roles (title, salary, department_id)
 VALUES 
-("CEO", 12000000, 1)
-("Sales Lead", 100000, 2),
-("Lead Engineer", 150000, 3),
+("CEO", 1200000, 1)
+("Sales", 115000, 2),
+("Engineer Lead", 150000, 3),
 ("Software Engineer", 120000, 4),
 ("Accountant", 125000, 5),
 ("Legal Team Lead", 250000, 6);
 
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id, is_manager)
+INSERT INTO employees (first_name, last_name, role_id, manager_id, is_manager)
 VALUES 
 ("Boyd", "Roberto", 1, null, 1),
 ("Jane", "Doe", 2, 1, 1),
