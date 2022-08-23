@@ -11,7 +11,7 @@ VALUES
 
 INSERT INTO roles (title, salary, department_id)
 VALUES 
-("CEO", 1200000, 1)
+("CEO", 1200000, 1),
 ("Sales", 115000, 2),
 ("Engineer Lead", 150000, 3),
 ("Software Engineer", 120000, 4),
