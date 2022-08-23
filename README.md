@@ -14,7 +14,7 @@ Command-line application from scratch to manage a company's employee database, u
 As a business owner
 I want to be able to view and manage the departments, roles, and employees in my company.
 ```
-- [Link to video use of application](https://drive.google.com/file/d/1-Gygn_ET9OdCg1dgKqWwuJp1sow6KNMU/view)
+- [Link to video use of application](https://drive.google.com/file/d/1Rn51DRToBUI3DgCbsF98dnD_fNDQK9VN/view)
 
 ### Tech
 - Inquirer
